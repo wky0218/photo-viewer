@@ -1,0 +1,473 @@
+div {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+#photo-view-modal {
+    display: none;
+}
+
+@media screen and (max-width:720px) {
+    #photo-view-modal {
+
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        text-align: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+    }
+}
+
+@media screen and (min-width:720px) {
+    #photo-view-modal {
+        overflow: hidden;
+    }
+}
+
+#photo-view-modal .photo-view-bg {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#photo-view-modal #photo-view-inner-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+#photo-view-modal #photo-view-inner-img img {
+    display: block;
+    cursor: pointer;
+    transform: rotate(0deg);
+}
+
+#photo-view-modal .photo-view-tip {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    height: 30px;
+    z-index: 9999;
+    text-align: center;
+    line-height: 30px;
+    font-size: 16px;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+#photo-view-modal .photo-view-tip span {
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+#photo-view-modal .photo-view-toolbar {
+    height: 44px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: none;
+}
+
+#photo-view-modal .photo-view-counter {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 44px;
+    font-size: 13px;
+    line-height: 44px;
+    color: #FFF;
+    opacity: 0.75;
+    padding: 0 10px;
+
+}
+
+#photo-view-modal .photo-view-button {
+    width: 44px;
+    height: 44px;
+    position: relative;
+    background: none;
+    cursor: pointer;
+    overflow: visible;
+    -webkit-appearance: none;
+    display: block;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    float: right;
+    opacity: 0.75;
+    -webkit-transition: opacity 0.2s;
+    transition: opacity 0.2s;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+/*icon*/
+#photo-view-modal .icon-photo-view {
+    display: inline-block;
+    position: relative;
+}
+
+#photo-view-modal .icon-photo-view:before {
+    content: '';
+    position: absolute;
+}
+
+#photo-view-modal .icon-photo-view:after {
+    content: '';
+    position: absolute;
+}
+
+
+
+/*close*/
+
+#photo-view-modal .icon-photo-view.icon-close {
+    color: #ffffff;
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#photo-view-modal .icon-photo-view.icon-close:before {
+    width: 18px;
+    height: 2px;
+    top: 22px;
+    left: 15px;
+    background-color: currentColor;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+#photo-view-modal .icon-photo-view.icon-close:after {
+    width: 18px;
+    height: 2px;
+    top: 22px;
+    left: 15px;
+    background-color: currentColor;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+
+
+
+/*prev*/
+#photo-view-modal .photo-view-prev {
+    display: none;
+}
+
+#photo-view-modal .icon-photo-view.icon-prev {
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+#photo-view-modal .icon-photo-view.icon-prev:before {
+    left: 15px;
+    top: 15px;
+    width: 10px;
+    height: 10px;
+    border-top: solid 2px currentColor;
+    border-right: solid 2px currentColor;
+    -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+}
+
+
+/*next*/
+#photo-view-modal .photo-view-next {
+    display: none;
+}
+
+#photo-view-modal .icon-photo-view.icon-next {
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+#photo-view-modal .icon-photo-view.icon-next:before {
+    left: 15px;
+    top: 15px;
+    width: 10px;
+    height: 10px;
+    border-top: solid 2px currentColor;
+    border-right: solid 2px currentColor;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+/*rotateL*/
+#photo-view-modal .rotateL {
+    color: #f1f1f1;
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    position: absolute;
+    top: 0;
+    right: 220px;
+    cursor: pointer;
+}
+
+#photo-view-modal .rotateL-icon {
+    color: #f1f1f1;
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border-top: solid 2px currentColor;
+    border-bottom: solid 2px currentColor;
+    border-left: solid 2px transparent;
+    border-right: solid 2px currentColor;
+}
+
+#photo-view-modal .rotateL-icon:before {
+    left: -1px;
+    top: -3px;
+    width: 4px;
+    height: 4px;
+    border-top: solid 2px currentColor;
+    border-left: solid 2px currentColor;
+    -webkit-transform: rotate(-80deg);
+    transform: rotate(-80deg);
+}
+
+/*rotateR*/
+#photo-view-modal .rotateR {
+    color: #f1f1f1;
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    position: absolute;
+    top: 0;
+    right: 176px;
+    cursor: pointer;
+}
+
+#photo-view-modal .rotateR-icon {
+    color: #f1f1f1;
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border-top: solid 2px currentColor;
+    border-bottom: solid 2px currentColor;
+    border-right: solid 2px transparent;
+    border-left: solid 2px currentColor;
+}
+
+#photo-view-modal .rotateR-icon:before {
+    right: -1px;
+    top: -3px;
+    width: 4px;
+    height: 4px;
+    border-top: solid 2px currentColor;
+    border-right: solid 2px currentColor;
+    -webkit-transform: rotate(80deg);
+    transform: rotate(80deg);
+}
+
+
+
+
+
+/*enlarge*/
+#photo-view-modal .enlarge {
+    color: #f1f1f1;
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    position: absolute;
+    top: 0;
+    right: 132px;
+    cursor: pointer;
+}
+
+#photo-view-modal .enlarge-icon {
+    color: #f1f1f1;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    border: solid 2px currentColor;
+    border-radius: 100%;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+#photo-view-modal .enlarge-icon:before {
+    top: 12px;
+    left: 5px;
+    height: 7px;
+    width: 2px;
+    background-color: currentColor;
+}
+
+#photo-view-modal .enlarge-icon i {
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+#photo-view-modal .enlarge-icon .icon:before {
+    width: 6px;
+    height: 1px;
+    background-color: #fff;
+
+}
+
+#photo-view-modal .enlarge-icon .icon:after {
+    width: 6px;
+    height: 1px;
+    background-color: #fff;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+
+}
+
+/*lessen*/
+#photo-view-modal .lessen {
+    color: #f1f1f1;
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    position: absolute;
+    top: 0;
+    right: 88px;
+    cursor: pointer;
+
+}
+
+#photo-view-modal .lessen-icon {
+    color: #f1f1f1;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    border: solid 2px currentColor;
+    border-radius: 100%;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+#photo-view-modal .lessen-icon:before {
+    top: 12px;
+    left: 5px;
+    height: 7px;
+    width: 2px;
+    background-color: currentColor;
+}
+
+#photo-view-modal .lessen-icon i {
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+#photo-view-modal .lessen-icon .icon:before {
+    width: 6px;
+    height: 1px;
+    background-color: #fff;
+
+}
+
+/*download*/
+#photo-view-modal .download {
+    color: #f1f1f1;
+    width: 44px;
+    height: 44px;
+    padding: 0 12px;
+    line-height: 44px;
+    position: absolute;
+    top: 0;
+    right: 44px;
+    cursor: pointer;
+
+}
+
+#photo-view-modal .download-icon {
+    color: #f1f1f1;
+    margin-top: 22px;
+    width: 20px;
+    height: 9px;
+    border-radius: 1px;
+    border: solid 2px currentColor;
+    border-top: 0;
+}
+
+#photo-view-modal .download-icon:before {
+    left: 7px;
+    top: -8px;
+    width: 2px;
+    height: 10px;
+    background-color: currentColor;
+}
+
+#photo-view-modal .download-icon:after {
+    left: 4px;
+    top: -5px;
+    width: 6px;
+    height: 6px;
+    border-top: solid 2px currentColor;
+    border-right: solid 2px currentColor;
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+}
+
+#photo-view-modal .download img {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    opacity: 0;
+    filter: alpha(opacity=0);
+
+}
