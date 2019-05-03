@@ -27,6 +27,7 @@
     <script>
     $(document).ready(function() {
         $('.img').photoViewer({
+	
 		rate: 0.2, //缩放倍数,移动端手势缩放不调用此参数,默认值为0.2
 		angle:15, //旋转角度,默认值为30
         });
