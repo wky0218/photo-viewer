@@ -27,8 +27,8 @@
     <script>
     $(document).ready(function() {
         $('.img').photoViewer({
-			rate: 0.2, //缩放倍数,移动端手势缩放不调用此参数,默认值为0.2
-			angle:15, //旋转角度,默认值为30
+		rate: 0.2, //缩放倍数,移动端手势缩放不调用此参数,默认值为0.2
+		angle:15, //旋转角度,默认值为30
         });
 
     })
@@ -47,7 +47,7 @@
   ps:
    class="img" 最好是block或inline-block, 否则点击缩略图时，图片动画可能不是从小图处出现的。
    
-   demo: http://s1.jk390.com/photoviewer/demo-1.6.0.html
+   demo: http://s1.jk390.com/photoviewer/demo160.html
 
    
    
