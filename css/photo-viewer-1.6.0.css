@@ -4,12 +4,12 @@ div {
     -webkit-box-sizing: border-box;
 }
 
-#photo-view-modal {
+#photo-viewer-modal {
     display: none;
 }
 
 @media screen and (max-width:720px) {
-    #photo-view-modal {
+    #photo-viewer-modal {
 
         width: 100%;
         height: 100%;
@@ -23,12 +23,12 @@ div {
 }
 
 @media screen and (min-width:720px) {
-    #photo-view-modal {
+    #photo-viewer-modal {
         overflow: hidden;
     }
 }
 
-#photo-view-modal .photo-view-bg {
+#photo-viewer-modal .photo-viewer-bg {
     width: 100%;
     height: 100%;
     background: #000;
@@ -38,20 +38,20 @@ div {
     left: 0;
 }
 
-#photo-view-modal #photo-view-inner-img {
+#photo-viewer-modal #photo-viewer-inner-img {
     position: absolute;
     top: 0;
     left: 0;
     cursor: pointer;
 }
 
-#photo-view-modal #photo-view-inner-img img {
+#photo-viewer-modal #photo-viewer-inner-img img {
     display: block;
     cursor: pointer;
     transform: rotate(0deg);
 }
 
-#photo-view-modal .photo-view-tip {
+#photo-viewer-modal .photo-viewer-tip {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -66,12 +66,12 @@ div {
     color: #ffffff;
 }
 
-#photo-view-modal .photo-view-tip span {
+#photo-viewer-modal .photo-viewer-tip span {
     padding: 5px;
     background-color: rgba(0, 0, 0, 0.3);
 }
 
-#photo-view-modal .photo-view-toolbar {
+#photo-viewer-modal .photo-viewer-toolbar {
     height: 44px;
     width: 100%;
     position: absolute;
@@ -82,7 +82,7 @@ div {
     display: none;
 }
 
-#photo-view-modal .photo-view-counter {
+#photo-viewer-modal .photo-viewer-counter {
     position: absolute;
     left: 0;
     top: 0;
@@ -95,7 +95,7 @@ div {
 
 }
 
-#photo-view-modal .photo-view-button {
+#photo-viewer-modal .photo-viewer-button {
     width: 44px;
     height: 44px;
     position: relative;
@@ -116,17 +116,17 @@ div {
 }
 
 /*icon*/
-#photo-view-modal .icon-photo-view {
+#photo-viewer-modal .icon-photo-viewer {
     display: inline-block;
     position: relative;
 }
 
-#photo-view-modal .icon-photo-view:before {
+#photo-viewer-modal .icon-photo-viewer:before {
     content: '';
     position: absolute;
 }
 
-#photo-view-modal .icon-photo-view:after {
+#photo-viewer-modal .icon-photo-viewer:after {
     content: '';
     position: absolute;
 }
@@ -135,7 +135,7 @@ div {
 
 /*close*/
 
-#photo-view-modal .icon-photo-view.icon-close {
+#photo-viewer-modal .icon-photo-viewer.icon-close {
     color: #ffffff;
     width: 44px;
     height: 44px;
@@ -145,7 +145,7 @@ div {
     right: 0;
 }
 
-#photo-view-modal .icon-photo-view.icon-close:before {
+#photo-viewer-modal .icon-photo-viewer.icon-close:before {
     width: 18px;
     height: 2px;
     top: 22px;
@@ -155,7 +155,7 @@ div {
     transform: rotate(45deg);
 }
 
-#photo-view-modal .icon-photo-view.icon-close:after {
+#photo-viewer-modal .icon-photo-viewer.icon-close:after {
     width: 18px;
     height: 2px;
     top: 22px;
@@ -169,11 +169,11 @@ div {
 
 
 /*prev*/
-#photo-view-modal .photo-view-prev {
+#photo-viewer-modal .photo-viewer-prev {
     display: none;
 }
 
-#photo-view-modal .icon-photo-view.icon-prev {
+#photo-viewer-modal .icon-photo-viewer.icon-prev {
     color: #fff;
     width: 44px;
     height: 44px;
@@ -185,7 +185,7 @@ div {
     background-color: rgba(0, 0, 0, 0.3);
 }
 
-#photo-view-modal .icon-photo-view.icon-prev:before {
+#photo-viewer-modal .icon-photo-viewer.icon-prev:before {
     left: 15px;
     top: 15px;
     width: 10px;
@@ -198,11 +198,11 @@ div {
 
 
 /*next*/
-#photo-view-modal .photo-view-next {
+#photo-viewer-modal .photo-viewer-next {
     display: none;
 }
 
-#photo-view-modal .icon-photo-view.icon-next {
+#photo-viewer-modal .icon-photo-viewer.icon-next {
     color: #fff;
     width: 44px;
     height: 44px;
@@ -214,7 +214,7 @@ div {
     background-color: rgba(0, 0, 0, 0.3);
 }
 
-#photo-view-modal .icon-photo-view.icon-next:before {
+#photo-viewer-modal .icon-photo-viewer.icon-next:before {
     left: 15px;
     top: 15px;
     width: 10px;
@@ -227,7 +227,7 @@ div {
 
 
 /*rotateL*/
-#photo-view-modal .rotateL {
+#photo-viewer-modal .rotateL {
     color: #f1f1f1;
     width: 44px;
     height: 44px;
@@ -238,7 +238,7 @@ div {
     cursor: pointer;
 }
 
-#photo-view-modal .rotateL-icon {
+#photo-viewer-modal .rotateL-icon {
     color: #f1f1f1;
     position: absolute;
     left: 16px;
@@ -252,7 +252,7 @@ div {
     border-right: solid 2px currentColor;
 }
 
-#photo-view-modal .rotateL-icon:before {
+#photo-viewer-modal .rotateL-icon:before {
     left: -1px;
     top: -3px;
     width: 4px;
@@ -264,7 +264,7 @@ div {
 }
 
 /*rotateR*/
-#photo-view-modal .rotateR {
+#photo-viewer-modal .rotateR {
     color: #f1f1f1;
     width: 44px;
     height: 44px;
@@ -275,7 +275,7 @@ div {
     cursor: pointer;
 }
 
-#photo-view-modal .rotateR-icon {
+#photo-viewer-modal .rotateR-icon {
     color: #f1f1f1;
     position: absolute;
     left: 16px;
@@ -289,7 +289,7 @@ div {
     border-left: solid 2px currentColor;
 }
 
-#photo-view-modal .rotateR-icon:before {
+#photo-viewer-modal .rotateR-icon:before {
     right: -1px;
     top: -3px;
     width: 4px;
@@ -305,7 +305,7 @@ div {
 
 
 /*enlarge*/
-#photo-view-modal .enlarge {
+#photo-viewer-modal .enlarge {
     color: #f1f1f1;
     width: 44px;
     height: 44px;
@@ -316,7 +316,7 @@ div {
     cursor: pointer;
 }
 
-#photo-view-modal .enlarge-icon {
+#photo-viewer-modal .enlarge-icon {
     color: #f1f1f1;
     width: 16px;
     height: 16px;
@@ -333,7 +333,7 @@ div {
     transform: rotate(-45deg);
 }
 
-#photo-view-modal .enlarge-icon:before {
+#photo-viewer-modal .enlarge-icon:before {
     top: 12px;
     left: 5px;
     height: 7px;
@@ -341,7 +341,7 @@ div {
     background-color: currentColor;
 }
 
-#photo-view-modal .enlarge-icon i {
+#photo-viewer-modal .enlarge-icon i {
     position: absolute;
     left: 4px;
     top: 4px;
@@ -349,14 +349,14 @@ div {
     transform: rotate(45deg);
 }
 
-#photo-view-modal .enlarge-icon .icon:before {
+#photo-viewer-modal .enlarge-icon .icon:before {
     width: 6px;
     height: 1px;
     background-color: #fff;
 
 }
 
-#photo-view-modal .enlarge-icon .icon:after {
+#photo-viewer-modal .enlarge-icon .icon:after {
     width: 6px;
     height: 1px;
     background-color: #fff;
@@ -366,7 +366,7 @@ div {
 }
 
 /*lessen*/
-#photo-view-modal .lessen {
+#photo-viewer-modal .lessen {
     color: #f1f1f1;
     width: 44px;
     height: 44px;
@@ -378,7 +378,7 @@ div {
 
 }
 
-#photo-view-modal .lessen-icon {
+#photo-viewer-modal .lessen-icon {
     color: #f1f1f1;
     width: 16px;
     height: 16px;
@@ -395,7 +395,7 @@ div {
     transform: rotate(-45deg);
 }
 
-#photo-view-modal .lessen-icon:before {
+#photo-viewer-modal .lessen-icon:before {
     top: 12px;
     left: 5px;
     height: 7px;
@@ -403,7 +403,7 @@ div {
     background-color: currentColor;
 }
 
-#photo-view-modal .lessen-icon i {
+#photo-viewer-modal .lessen-icon i {
     position: absolute;
     left: 4px;
     top: 4px;
@@ -411,7 +411,7 @@ div {
     transform: rotate(45deg);
 }
 
-#photo-view-modal .lessen-icon .icon:before {
+#photo-viewer-modal .lessen-icon .icon:before {
     width: 6px;
     height: 1px;
     background-color: #fff;
@@ -419,7 +419,7 @@ div {
 }
 
 /*download*/
-#photo-view-modal .download {
+#photo-viewer-modal .download {
     color: #f1f1f1;
     width: 44px;
     height: 44px;
@@ -432,7 +432,7 @@ div {
 
 }
 
-#photo-view-modal .download-icon {
+#photo-viewer-modal .download-icon {
     color: #f1f1f1;
     margin-top: 22px;
     width: 20px;
@@ -442,7 +442,7 @@ div {
     border-top: 0;
 }
 
-#photo-view-modal .download-icon:before {
+#photo-viewer-modal .download-icon:before {
     left: 7px;
     top: -8px;
     width: 2px;
@@ -450,7 +450,7 @@ div {
     background-color: currentColor;
 }
 
-#photo-view-modal .download-icon:after {
+#photo-viewer-modal .download-icon:after {
     left: 4px;
     top: -5px;
     width: 6px;
@@ -461,7 +461,7 @@ div {
     transform: rotate(135deg);
 }
 
-#photo-view-modal .download img {
+#photo-viewer-modal .download img {
     width: 20px;
     height: 20px;
     position: absolute;

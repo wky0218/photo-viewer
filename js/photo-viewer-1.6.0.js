@@ -9,12 +9,12 @@
 
 (function($) {
     var thumbObj; //缩略图
-    var photoViewModal;
-    var photoViewBg;
-    var photoViewToolbar;
-    var photoViewNext;
-    var photoViewPrev;
-    var photoViewClose;
+    var photoViewerModal;
+    var photoViewerBg;
+    var photoViewerToolbar;
+    var photoViewerNext;
+    var photoViewerPrev;
+    var photoViewerClose;
     var animateTime = 250; //动画时间
     var minScanle = 1; //适应容器大小时最小缩放倍数
     var pw = 2; //横向边距
@@ -41,46 +41,42 @@
             var startMove = {};
             var startXY = [];
             var endXY = [];
-            var startX;
-            var varstartY;
-            var endX;
-            var endY;
             var moveStime = 0;
             var moveEtime;
             var isMove = false;
-            var boxHtml = "<div id='photo-view-modal' class='photo-view' style='display:none;'>";
-            boxHtml += "<div class='photo-view-bg'></div>";
-            boxHtml += "<div id='photo-view-inner-img' style='position:absolute;top:0;left:0;right:0;bottom:0;margin:auto;' ondragstart='return false;'><img id='photo-view-pic' src='" + loadingGif + "' /><div style='background:none;background-color: rgba(0, 0, 0, 0);opacity:0;width:100%;height:100%;position:absolute;top:0;left:0;'></div></div>";
-            boxHtml += "<div class='photo-view-tip' style='display: none;'><span></span></div>";
-            boxHtml += "<div class='photo-view-toolbar'>";
-            boxHtml += "<div class='photo-view-counter'></div>";
+            var boxHtml = "<div id='photo-viewer-modal' class='photo-viewer' style='display:none;'>";
+            boxHtml += "<div class='photo-viewer-bg'></div>";
+            boxHtml += "<div id='photo-viewer-inner-img' style='position:absolute;top:0;left:0;right:0;bottom:0;margin:auto;' ondragstart='return false;'><img id='photo-viewer-pic' src='" + loadingGif + "' /><div style='background:none;background-color: rgba(0, 0, 0, 0);opacity:0;width:100%;height:100%;position:absolute;top:0;left:0;'></div></div>";
+            boxHtml += "<div class='photo-viewer-tip' style='display: none;'><span></span></div>";
+            boxHtml += "<div class='photo-viewer-toolbar'>";
+            boxHtml += "<div class='photo-viewer-counter'></div>";
             boxHtml += "<div class='msg' style='color:#fff;'></div>";
-            boxHtml += "<div class='photo-view-rotateL rotateL' title='rotateL'><i class='icon-photo-view icon rotateL-icon'></i></div>";
-            boxHtml += "<div class='photo-view-rotateR rotateR' title='rotateR'><i class='icon-photo-view icon rotateR-icon'></i></div>";
-            boxHtml += "<div class='photo-view-enlarge enlarge' title='enlarge'><div class='enlarge-icon icon-photo-view'><i class='icon-photo-view icon'></i></div></div>";
-            boxHtml += "<div class='photo-view-lessen lessen' title='lessen'><div class='lessen-icon icon-photo-view'><i class='icon-photo-view icon'></i></div></div>";
-            boxHtml += "<div class='photo-view-download download' title='download'><img src='' width='20' height='20'><div class='download-icon icon-photo-view'><i class='icon-photo-view icon'></i></div></div>";
-            boxHtml += "<i class='icon-photo-view icon-close photo-view-button photo-view-close' title='Close'></i>";
+            boxHtml += "<div class='photo-viewer-rotateL rotateL' title='rotateL'><i class='icon-photo-viewer icon rotateL-icon'></i></div>";
+            boxHtml += "<div class='photo-viewer-rotateR rotateR' title='rotateR'><i class='icon-photo-viewer icon rotateR-icon'></i></div>";
+            boxHtml += "<div class='photo-viewer-enlarge enlarge' title='enlarge'><div class='enlarge-icon icon-photo-viewer'><i class='icon-photo-viewer icon'></i></div></div>";
+            boxHtml += "<div class='photo-viewer-lessen lessen' title='lessen'><div class='lessen-icon icon-photo-viewer'><i class='icon-photo-viewer icon'></i></div></div>";
+            boxHtml += "<div class='photo-viewer-download download' title='download'><img src='' width='20' height='20'><div class='download-icon icon-photo-viewer'><i class='icon-photo-viewer icon'></i></div></div>";
+            boxHtml += "<i class='icon-photo-viewer icon-close photo-viewer-button photo-viewer-close' title='Close'></i>";
             boxHtml += "</div>";
-            boxHtml += "<i class='icon-photo-view icon-prev photo-view-button photo-view-prev' title='prev'></i>";
-            boxHtml += "<i class='icon-photo-view icon-next photo-view-button photo-view-next' title='next'></i>";
+            boxHtml += "<i class='icon-photo-viewer icon-prev photo-viewer-button photo-viewer-prev' title='prev'></i>";
+            boxHtml += "<i class='icon-photo-viewer icon-next photo-viewer-button photo-viewer-next' title='next'></i>";
             boxHtml += "</div>";
 
             $("body").append(boxHtml);
 
-            photoBox = $("#photo-view-inner-img");
-            photo = $("#photo-view-inner-img img");
-            photoViewModal = $("#photo-view-modal");
-            photoViewBg = $(".photo-view-bg");
-            photoViewToolbar = $(".photo-view-toolbar");
-            photoViewNext = $(".photo-view-next");
-            photoViewPrev = $(".photo-view-prev");
-            photoViewRotateL = $(".photo-view-rotateL");
-            photoViewRotateR = $(".photo-view-rotateR");
-            photoViewEnlarge = $(".photo-view-enlarge");
-            photoViewLessen = $(".photo-view-lessen");
-            photoViewDownload = $(".photo-view-download img");
-            photoViewClose = $(".photo-view-close");
+            photoBox = $("#photo-viewer-inner-img");
+            photo = $("#photo-viewer-inner-img img");
+            photoViewerModal = $("#photo-viewer-modal");
+            photoViewerBg = $(".photo-viewer-bg");
+            photoViewerToolbar = $(".photo-viewer-toolbar");
+            photoViewerNext = $(".photo-viewer-next");
+            photoViewerPrev = $(".photo-viewer-prev");
+            photoViewerRotateL = $(".photo-viewer-rotateL");
+            photoViewerRotateR = $(".photo-viewer-rotateR");
+            photoViewerEnlarge = $(".photo-viewer-enlarge");
+            photoViewerLessen = $(".photo-viewer-lessen");
+            photoViewerDownload = $(".photo-viewer-download img");
+            photoViewerClose = $(".photo-viewer-close");
 
             //图片绑定点击事件
             $(this).on("click", function() {
@@ -102,7 +98,7 @@
 
 
             //上一张
-            photoViewPrev.on("click", function() {
+            photoViewerPrev.on("click", function() {
 
                 if (picsIndex > 0) {
                     picsIndex--;
@@ -117,7 +113,7 @@
             })
 
             //下一张
-            photoViewNext.on("click", function() {
+            photoViewerNext.on("click", function() {
 
                 if (picsIndex < picsLength - 1) {
                     picsIndex++;
@@ -131,9 +127,9 @@
 
             })
             //逆时针旋转
-            photoViewRotateL.on("click", function() {
+            photoViewerRotateL.on("click", function() {
                 setMouseMiddel();
-                var angle0 = getAngle("photo-view-pic");
+                var angle0 = getAngle("photo-viewer-pic");
                 var newAngle = angle0 - options.angle;
                 if (newAngle > 180) {
                     newAngle = -180 + (newAngle - 180);
@@ -146,9 +142,9 @@
             })
 
             //顺时针旋转
-            photoViewRotateR.on("click", function() {
+            photoViewerRotateR.on("click", function() {
                 setMouseMiddel();
-                var angle0 = getAngle("photo-view-pic");
+                var angle0 = getAngle("photo-viewer-pic");
 
                 var newAngle = angle0 + options.angle;
                 if (newAngle > 180) {
@@ -162,28 +158,28 @@
             })
 
             //放大
-            photoViewEnlarge.on("click", function() {
+            photoViewerEnlarge.on("click", function() {
                 setMouseMiddel();
                 $(this).photo_ZoomIn();
             })
             //缩小
-            photoViewLessen.on("click", function() {
+            photoViewerLessen.on("click", function() {
                 setMouseMiddel();
                 $(this).photo_ZoomOut();
             })
 
             //关闭
-            photoViewClose.on("click", function() {
+            photoViewerClose.on("click", function() {
 
                 rotate(outerBox.width, outerBox.height, options.imgNaturalSize.width, options.imgNaturalSize.height, 0, function() {});
-                photoViewToolbar.hide();
-                photoViewNext.hide();
-                photoViewPrev.hide();
-                photoViewBg.animate({ "opacity": 0 }, animateTime / 2);
+                photoViewerToolbar.hide();
+                photoViewerNext.hide();
+                photoViewerPrev.hide();
+                photoViewerBg.animate({ "opacity": 0 }, animateTime / 2);
                 photoBox.animate({ "width": startObj.width, "height": startObj.height, "top": 0, "left": 0 }, animateTime);
                 photo.animate({ "width": startObj.width, "height": startObj.height, "top": 0, "left": 0 }, animateTime);
-                photoViewModal.css(absoluteObj).animate(startObj, animateTime, function() {
-                    photoViewModal.hide();
+                photoViewerModal.css(absoluteObj).animate(startObj, animateTime, function() {
+                    photoViewerModal.hide();
                     outerBox = {};
                     scope = {};
                 });
@@ -193,7 +189,7 @@
 
 
             // 初始化鼠标滚动监听器
-            $(photoViewModal, photoBox).on('mousewheel', function(event, delta) {
+            $(photoViewerModal, photoBox).on('mousewheel', function(event, delta) {
                 event.preventDefault();
                 if (delta > 0)
                     photoBox.photo_ZoomIn();
@@ -290,17 +286,17 @@
                 }
                 moveStime = 0;
                 mousePosition.isDrag = false;
-                photoBox.curWidth = photoBox.widthing;
-                photoBox.curHeight = photoBox.heighting;
-                photo.curWidth = photo.widthing;
-                photo.curHeight = photo.heighting;
+                photoBox.curW = photoBox.widthing;
+                photoBox.curH = photoBox.heighting;
+                photo.curW = photo.widthing;
+                photo.curH = photo.heighting;
                 //更改头部菜单状态,手指都离开时再判断    
                 if (fingers == 0) {
                     if (isMove == false) {
-                        if (photoViewToolbar.is(":visible")) {
-                            photoViewToolbar.fadeOut(200);
+                        if (photoViewerToolbar.is(":visible")) {
+                            photoViewerToolbar.fadeOut(200);
                         } else {
-                            photoViewToolbar.fadeIn(200);
+                            photoViewerToolbar.fadeIn(200);
                         }
                     }
 
@@ -314,7 +310,7 @@
                 e.preventDefault();
 
             });
-            photoViewModal.on("touchmove", function(e) {
+            photoViewerModal.on("touchmove", function(e) {
                 e.preventDefault();
             })
             photoBox.on("touchmove", function(e) {
@@ -366,7 +362,7 @@
 
         // 显示图片索引与图片数
         "photo_showCounter": function(index, length) {
-            $(".photo-view-counter").html((index + 1) + " / " + length);
+            $(".photo-viewer-counter").html((index + 1) + " / " + length);
         },
 
         //移动端放大
@@ -374,11 +370,11 @@
             var offset0 = photoBox.offset();
             var h0 = photoBox.height();
             var w0 = photoBox.width();
-            var photoBoxH0 = photoBox.curHeight;
-            var photoBoxW0 = photoBox.curWidth;
+            var photoBoxH0 = photoBox.curH;
+            var photoBoxW0 = photoBox.curW;
 
-            var picH0 = photo.curHeight;
-            var picW0 = photo.curWidth;
+            var picH0 = photo.curH;
+            var picW0 = photo.curW;
 
             //父级容器
             var photoBoxH = photoBoxH0 * scanle;
@@ -424,10 +420,10 @@
             var offset0 = photoBox.offset();
             var h0 = photoBox.height();
             var w0 = photoBox.width();
-            var photoBoxH0 = photoBox.curHeight;
-            var photoBoxW0 = photoBox.curWidth;
-            var picH0 = photo.curHeight;
-            var picW0 = photo.curWidth;
+            var photoBoxH0 = photoBox.curH;
+            var photoBoxW0 = photoBox.curW;
+            var picH0 = photo.curH;
+            var picW0 = photo.curW;
             //父级容器
             var photoBoxH = photoBoxH0 * scanle;
             var photoBoxW = photoBoxW0 * scanle;
@@ -492,11 +488,11 @@
             var offset0 = photoBox.offset();
             var h0 = photoBox.height();
             var w0 = photoBox.width();
-            var photoBoxH0 = photoBox.curHeight;
-            var photoBoxW0 = photoBox.curWidth;
+            var photoBoxH0 = photoBox.curH;
+            var photoBoxW0 = photoBox.curW;
 
-            var picH0 = photo.curHeight;
-            var picW0 = photo.curWidth;
+            var picH0 = photo.curH;
+            var picW0 = photo.curW;
             //父级容器
             var photoBoxH = photoBoxH0 * (1 + options.rate);
             var photoBoxW = photoBoxW0 * (1 + options.rate);
@@ -523,12 +519,12 @@
             photo.css({ "height": picH, "width": picW, "left": (photoBoxW - picW) / 2, "top": (photoBoxH - picH) / 2 });
             photoBox.widthing = photoBoxW;
             photoBox.heighting = photoBoxH;
-            photoBox.curWidth = photoBoxW;
-            photoBox.curHeight = photoBoxH;
+            photoBox.curW = photoBoxW;
+            photoBox.curH = photoBoxH;
             photo.widthing = picW;
             photo.heighting = picH;
-            photo.curWidth = picW;
-            photo.curHeight = picH;
+            photo.curW = picW;
+            photo.curH = picH;
             initScope();
             showTip((nowScanle * 100).toFixed(0) + "%");
 
@@ -545,10 +541,10 @@
             var offset0 = photoBox.offset();
             var h0 = photoBox.height();
             var w0 = photoBox.width();
-            var photoBoxH0 = photoBox.curHeight;
-            var photoBoxW0 = photoBox.curWidth;
-            var picH0 = photo.curHeight;
-            var picW0 = photo.curWidth;
+            var photoBoxH0 = photoBox.curH;
+            var photoBoxW0 = photoBox.curW;
+            var picH0 = photo.curH;
+            var picW0 = photo.curW;
 
             //父级容器
             var photoBoxH = photoBoxH0 * (1 - options.rate);
@@ -589,13 +585,13 @@
             photo.css({ "height": picH, "width": picW, "left": (photoBoxW - picW) / 2, "top": (photoBoxH - picH) / 2 });
             photoBox.widthing = photoBoxW;
             photoBox.heighting = photoBoxH;
-            photoBox.curWidth = photoBoxW;
-            photoBox.curHeight = photoBoxH;
+            photoBox.curW = photoBoxW;
+            photoBox.curH = photoBoxH;
 
             photo.widthing = picW;
             photo.heighting = picH;
-            photo.curWidth = picW;
-            photo.curHeight = picH;
+            photo.curW = picW;
+            photo.curH = picH;
             initScope();
 
             showTip((nowScanle * 100).toFixed(0) + "%");
@@ -718,8 +714,8 @@
 
     //显示提示信息
     var showTip = function(con) {
-        photoViewModal.find(".photo-view-tip").remove();
-        $("<div class='photo-view-tip'><span>" + con + "</span></div>").appendTo(photoViewModal).fadeOut(1200);
+        photoViewerModal.find(".photo-viewer-tip").remove();
+        $("<div class='photo-viewer-tip'><span>" + con + "</span></div>").appendTo(photoViewerModal).fadeOut(1200);
     }
     //显示提示信息
     var showMsg = function(con) {
@@ -742,21 +738,13 @@
             st.getPropertyValue("-o-transform") ||
             st.getPropertyValue("transform") ||
             "FAIL";
-        // With rotate(30deg)...
-        // matrix(0.866025, 0.5, -0.5, 0.866025, 0px, 0px)
-        //console.log('Matrix: ' + tr);
-        // rotation matrix - http://en.wikipedia.org/wiki/Rotation_matrix
         var values = tr.split('(')[1].split(')')[0].split(',');
         var a = values[0];
         var b = values[1];
         var c = values[2];
         var d = values[3];
         var scale = Math.sqrt(a * a + b * b);
-        //console.log('Scale: ' + scale);
-        // arc sin, convert from radians to degrees, round
         var sin = b / scale;
-        // next line works for 30deg but not 130deg (returns 50);
-        // var angle = Math.round(Math.asin(sin) * (180/Math.PI));
         var angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
         return parseInt(angle);
 
@@ -868,10 +856,10 @@
 
         photoBox.css({ "width": photoBoxW, "height": photoBoxH, "left": (boxWidth - photoBoxW) / 2, "top": (boxHeight - photoBoxH) / 2 });
         photo.css({ "left": (photoBoxW - photoW) / 2, "top": (photoBoxH - photoH) / 2 });
-        photoBox.curWidth = photoBoxW;
-        photoBox.curHeight = photoBoxH;
-        photo.curWidth = photoW;
-        photo.curHeight = photoH;
+        photoBox.curW = photoBoxW;
+        photoBox.curH = photoBoxH;
+        photo.curW = photoW;
+        photo.curH = photoH;
 
         //每次旋转后求出图片自然大小旋转到这个角度后所占的平面大小,缩放界限(10倍或1/10)以这个为参照
         photoBox.naturalWidth = o.halfWidth * 2;
@@ -1063,13 +1051,13 @@
      */
     var loadImage = function(src) {
         var winSize = getWinSize();
-        photoViewDownload.attr("src", src);
+        photoViewerDownload.attr("src", src);
         getImageSize(src, function(size) {
             options.imgNaturalSize = size;
             //图片大小即父容器大小
             photoBox.naturalWidth = size.width;
             photoBox.naturalHeight = size.height;
-            var visible = photoViewModal.is(":visible");
+            var visible = photoViewerModal.is(":visible");
 
             if (visible == false) {
 
@@ -1094,33 +1082,33 @@
                 photo.css({ "width": start.width, "height": start.height });
                 photo.attr("src", src);
 
-                photoViewModal.css(start);
+                photoViewerModal.css(start);
 
-                var el = initBoxView(photoViewModal, options.imgNaturalSize, winSize);
+                var el = initBoxView(photoViewerModal, options.imgNaturalSize, winSize);
 
-                photoViewModal.animate(el.modalBox.absolute, animateTime, function() {
-                    photoViewModal.css(el.modalBox.fixed);
-                    photoViewToolbar.show();
+                photoViewerModal.animate(el.modalBox.absolute, animateTime, function() {
+                    photoViewerModal.css(el.modalBox.fixed);
+                    photoViewerToolbar.show();
                     if (picsIndex < picsLength - 1) {
-                        photoViewNext.show();
+                        photoViewerNext.show();
                     } else {
-                        photoViewNext.hide();
+                        photoViewerNext.hide();
                     }
                     if (picsIndex > 0) {
-                        photoViewPrev.show();
+                        photoViewerPrev.show();
                     } else {
-                        photoViewPrev.hide();
+                        photoViewerPrev.hide();
                     }
 
                     $(this).photo_showCounter(picsIndex, picsLength);
                 })
 
-                $(".photo-view-bg").animate({ "opacity": 1 }, animateTime);
+                $(".photo-viewer-bg").animate({ "opacity": 1 }, animateTime);
                 photo.animate(el.img, animateTime, function() {});
                 photoBox.animate(el.imgBox, animateTime, function() {
 
-                    photoBox.curWidth = el.imgBox.width;
-                    photoBox.curHeight = el.imgBox.height;
+                    photoBox.curW = el.imgBox.width;
+                    photoBox.curH = el.imgBox.height;
                 });
 
 
@@ -1128,25 +1116,25 @@
 
                 photoBox.removeAttr("style");
                 photo.removeAttr("style");
-                var el = initBoxView(photoViewModal, options.imgNaturalSize, winSize);
+                var el = initBoxView(photoViewerModal, options.imgNaturalSize, winSize);
 
-                photoViewModal.css(el.modalBox.fixed);
+                photoViewerModal.css(el.modalBox.fixed);
 
                 if (picsIndex < picsLength - 1) {
-                    photoViewNext.show();
+                    photoViewerNext.show();
                 } else {
-                    photoViewNext.hide();
+                    photoViewerNext.hide();
                 }
                 if (picsIndex > 0) {
-                    photoViewPrev.show();
+                    photoViewerPrev.show();
                 } else {
-                    photoViewPrev.hide();
+                    photoViewerPrev.hide();
                 }
 
                 photoBox.css(el.imgBox);
 
-                photoBox.curWidth = el.imgBox.width;
-                photoBox.curHeight = el.imgBox.height;
+                photoBox.curW = el.imgBox.width;
+                photoBox.curH = el.imgBox.height;
                 photo.css(el.img);
                 photo.attr("src", src);
                 $(this).photo_showCounter(picsIndex, picsLength);
@@ -1276,8 +1264,10 @@
 
         }
 
-        photo.curWidth = img.width;
-        photo.curHeight = img.height;
+        photo.curW = img.width;
+        photo.curH = img.height;
+        photoBox.curW = imgBox.width;
+        photoBox.curH = imgBox.height;          
         outerBox.width = modalBox.width;
         outerBox.height = modalBox.height;
         outerBox.top = modalBox.fixed.top;
@@ -1350,9 +1340,9 @@
     window.onresize = function() {
         var winSize = getWinSize();
         if (options.imgNaturalSize) {
-            var angle = getAngle("photo-view-pic");
-            var el = initBoxView(photoViewModal, options.imgNaturalSize, winSize, angle, 1);
-            photoViewModal.css(el.modalBox.fixed);
+            var angle = getAngle("photo-viewer-pic");
+            var el = initBoxView(photoViewerModal, options.imgNaturalSize, winSize, angle, 1);
+            photoViewerModal.css(el.modalBox.fixed);
             photoBox.css(el.imgBox);
             photo.css(el.img);
 
