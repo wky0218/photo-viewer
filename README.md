@@ -49,7 +49,7 @@
   ps:
    class="img" 最好是block或inline-block, 否则点击缩略图时，图片动画可能不是从小图处出现的。
    
-   demo: http://www.1001.kim/photoviewer/demo-1.6.0.html
+   demo: http://www.1001.kim/photoviewer/index.html
 
  
     
